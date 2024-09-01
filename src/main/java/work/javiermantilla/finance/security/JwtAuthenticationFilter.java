@@ -12,11 +12,12 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.utils.FinanceConstants;
-import work.javiermantilla.finance.utils.JwtUtil;
 
 @Component
 @RequiredArgsConstructor
+@Log4j2
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
 	private static final String MESSAGE_REQUIRED_HEADER = "Required headers not specified in the request";
@@ -33,8 +34,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 		if (verifyPath(path)){
             filterChain.doFilter(request, response);
             return;
-        }
-		
+        }		
 		String jwt = null;
         if(request.getCookies()==null) {
         	HttpServletResponse resp = response;
@@ -49,7 +49,9 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             }
         }
         if(jwt!=null && jWTUtils.validateJWT(jwt)) {
-            Thread.currentThread().setName(jWTUtils.extraerContextoJWT(jwt).toString());
+        	String nameThread=jWTUtils.extraerContextoJWT(jwt).toString();
+        	log.info("Se nombra el hilo del proceso: {}",nameThread);
+            Thread.currentThread().setName(nameThread);            
             filterChain.doFilter(request, response);
             //return;
         } else {
