@@ -1,4 +1,4 @@
-package work.javiermantilla.finance.dto;
+package work.javiermantilla.finance.dto.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

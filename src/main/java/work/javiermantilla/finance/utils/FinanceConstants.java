@@ -9,8 +9,7 @@ public class FinanceConstants {
 	public static final String TOKEN_IDUSER= "idUser";
 	public static final String TOKEN_NAME = "name";
 	
-	public static final String RESPONSE_FIND = "Consulta realizada con éxito";
-	public static final String TITTLE_FIND = "Consulta éxitosa";
+	
 	public static final String RESPONSE_LOGIN = "Cookie necesaria para las peticiones del sistema.";
 	
 	public static final Long SECOND_TO_MILLIS = 1000l;
@@ -24,4 +23,17 @@ public class FinanceConstants {
 			* SECOND_TO_MILLIS;
 	
 	public static final String DOMAIN_LOCAL_COOKIE = "localhost";
+	
+	
+	public static final String RESPONSE_CREATED = "Registro creado con éxito";
+	public static final String TITTLE_CREATED = "Registro éxitoso";
+	
+	public static final String RESPONSE_UPDATE = "Actualización realizada con éxito";
+	public static final String TITTLE_UPDATE = "Actualización éxitosa";
+	
+	public static final String RESPONSE_DELETE = "Eliminación realizada con éxito";
+	public static final String TITTLE_DELETE = "Eliminación éxitosa";
+	
+	public static final String RESPONSE_FIND = "Consulta realizada con éxito";
+	public static final String TITTLE_FIND = "Consulta éxitosa";
 }

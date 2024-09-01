@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
-import work.javiermantilla.finance.dto.UserContextSessionDTO;
+import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
 import work.javiermantilla.finance.utils.FinanceConstants;
 
 @Component

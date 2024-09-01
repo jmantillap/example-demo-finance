@@ -9,7 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
-import work.javiermantilla.finance.dto.UserContextSessionDTO;
+import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
 import work.javiermantilla.finance.security.JwtUtil;
 import work.javiermantilla.finance.service.LoginServices;
 import work.javiermantilla.finance.utils.FinanceConstants;

@@ -43,7 +43,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
         
         for (Cookie cookie : request.getCookies()) {
-            if (cookie.getName().equals("access_token")){
+            if (cookie.getName().equals("finance_token")){
                 jwt = cookie.getValue();
                 break;
             }
@@ -53,7 +53,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         	log.info("Se nombra el hilo del proceso: {}",nameThread);
             Thread.currentThread().setName(nameThread);            
             filterChain.doFilter(request, response);
-            //return;
+            return;
         } else {
             HttpServletResponse resp = response;
             resp.sendError(HttpServletResponse.SC_FORBIDDEN);

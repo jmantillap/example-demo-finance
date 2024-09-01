@@ -1,4 +1,4 @@
-package work.javiermantilla.finance.dto;
+package work.javiermantilla.finance.dto.login;
 
 import java.io.Serializable;
 import java.text.ParseException;
@@ -30,7 +30,7 @@ public class UserContextSessionDTO implements Serializable {
         return new Gson().toJson(this);
     }
     
-    public UserContextSessionDTO toUserContextoSesionDto(String json) throws JSONException, ParseException {
+    public UserContextSessionDTO toUserContextSessionDto(String json) throws JSONException, ParseException {
         SimpleDateFormat format = new SimpleDateFormat("MMM dd, yyyy, HH:mm:ss a", Locale.ENGLISH);
         JSONObject objetoJson = new JSONObject(json);
         UserContextSessionDTO userContextSessionDTO = new UserContextSessionDTO();

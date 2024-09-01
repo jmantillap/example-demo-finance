@@ -1,4 +1,4 @@
-package work.javiermantilla.finance.dto;
+package work.javiermantilla.finance.dto.login;
 
 import java.io.Serial;
 import java.io.Serializable;

@@ -1,7 +1,7 @@
 package work.javiermantilla.finance.service;
 
 import jakarta.servlet.http.HttpServletResponse;
-import work.javiermantilla.finance.dto.UserContextSessionDTO;
+import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
 
 public interface LoginServices {
 	

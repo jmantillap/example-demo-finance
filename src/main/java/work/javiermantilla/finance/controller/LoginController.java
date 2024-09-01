@@ -12,8 +12,8 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import work.javiermantilla.finance.dto.AutenticationDTO;
 import work.javiermantilla.finance.dto.GenericResponseDTO;
+import work.javiermantilla.finance.dto.login.AutenticationDTO;
 import work.javiermantilla.finance.service.LoginServices;
 import work.javiermantilla.finance.utils.FinanceConstants;
 
@@ -31,8 +31,7 @@ public class LoginController {
 			HttpServletResponse response) {
 
 		String token = this.loginServices.getToken(login.getName());
-		response = this.loginServices.createCookieSession(token, response);
-		
+		response = this.loginServices.createCookieSession(token, response);		
 		String dataCookie =this.loginServices.getDataCookie(response.getHeader("Set-Cookie"));
 		genericResponse = new GenericResponseDTO(
 				dataCookie ,

@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -16,8 +17,8 @@ import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.validation.ValidationException;
 import lombok.extern.log4j.Log4j2;
-import work.javiermantilla.finance.dto.FieldErrorDTO;
 import work.javiermantilla.finance.dto.GenericResponseDTO;
+import work.javiermantilla.finance.dto.exception.FieldErrorDTO;
 
 @ControllerAdvice
 @Log4j2
@@ -52,6 +53,18 @@ public class ExceptionGlobalResponse {
 		return new ResponseEntity<>(result, HttpStatus.INTERNAL_SERVER_ERROR);
 
 	}
+	
+	@ExceptionHandler(HttpMessageNotReadableException.class)
+	protected ResponseEntity<Object> handleHttpMessageNotReadableException(HttpMessageNotReadableException ex) {
+		log.error(ex.getMessage(), ex);
+		String mensaje=ERROR;
+		if(ex.getMessage().contains("JSON parse error: Cannot deserialize value of type `java.time.LocalDate`")) {
+			mensaje="Formato de fecha erroneo. El formato debe ser 'YYYY-MM-DD'";
+		}
+		result = new GenericResponseDTO(mensaje, false,"Error validación de campos",HttpStatus.BAD_REQUEST);
+		
+		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+	}
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
@@ -59,7 +72,7 @@ public class ExceptionGlobalResponse {
 		
 		result = new GenericResponseDTO(this.getErrorsMap(fieldErrors), false,
 				"Error validación de campos",
-				HttpStatus.INTERNAL_SERVER_ERROR);
+				HttpStatus.BAD_REQUEST);
 		
 		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 	}
