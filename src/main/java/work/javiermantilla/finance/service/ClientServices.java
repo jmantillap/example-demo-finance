@@ -2,12 +2,12 @@ package work.javiermantilla.finance.service;
 
 import java.util.List;
 
-import work.javiermantilla.finance.dto.client.ClientFullDTO;
+import work.javiermantilla.finance.dto.client.ClientDTO;
 
 public interface ClientServices {
 	
-	ClientFullDTO createClient(ClientFullDTO client);
-	ClientFullDTO updateClient(ClientFullDTO client);
+	ClientDTO createClient(ClientDTO client);
+	ClientDTO updateClient(ClientDTO client);
 	boolean deleteClient(Integer id);	
-	List<ClientFullDTO> getListClients();
+	List<ClientDTO> getListClients();	
 }

@@ -8,20 +8,19 @@ import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
 
 @Component
 public class ContextSession {
-		
-	public UserContextSessionDTO obtenerContextoDeSesionEnHilo() {
+	
+	public UserContextSessionDTO getContextSessionThread() {
+		return contextSessionThread();
+	}
+	
+	private UserContextSessionDTO contextSessionThread() {
 		try {
 			String contextoJSON = Thread.currentThread().getName();
 			UserContextSessionDTO usuarioContextoSesionDTO = new UserContextSessionDTO();						
-			return usuarioContextoSesionDTO
-					.toUserContextSessionDto(contextoJSON);
+			return usuarioContextoSesionDTO.toUserContextSessionDto(contextoJSON);
 
 		} catch (Exception e) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
 		}
-	}
-	
-	public UserContextSessionDTO getContextoDeSesionEnHilo() {
-		return obtenerContextoDeSesionEnHilo();
 	}
 }

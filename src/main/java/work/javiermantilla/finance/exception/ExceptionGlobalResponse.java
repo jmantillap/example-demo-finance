@@ -18,7 +18,6 @@ import org.springframework.web.server.ResponseStatusException;
 import jakarta.validation.ValidationException;
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.dto.GenericResponseDTO;
-import work.javiermantilla.finance.dto.exception.FieldErrorDTO;
 
 @ControllerAdvice
 @Log4j2
@@ -68,8 +67,8 @@ public class ExceptionGlobalResponse {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-		List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors().stream().toList();
-		
+		log.error(ex.getMessage(), ex);
+		List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors().stream().toList();		
 		result = new GenericResponseDTO(this.getErrorsMap(fieldErrors), false,
 				"Error validación de campos",
 				HttpStatus.BAD_REQUEST);
@@ -77,9 +76,17 @@ public class ExceptionGlobalResponse {
 		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 	}
 	
+	@ExceptionHandler(ArgumentNotValidException.class)
+	protected ResponseEntity<Object> handleArgumentNotValidException(ArgumentNotValidException ex) {
+		log.error(ex.getMessage(), ex);
+		List<FieldError> fieldErrors = ex.getListFieldErrors().stream().toList();
+		result = new GenericResponseDTO(this.getErrorsMap(fieldErrors), false,
+				"Error validación de campos",HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
+	}
+	
 	private Map<String, List<FieldErrorDTO>> getErrorsMap(List<FieldError> fields) {
 		Map<String, List<FieldErrorDTO>> errorResponse = new HashMap<>();
-
 		List<FieldErrorDTO> lista = fields.stream().map(f -> {
 			return new FieldErrorDTO(f.getField(), f.getDefaultMessage());
 		}).toList();
@@ -88,7 +95,7 @@ public class ExceptionGlobalResponse {
 	}
 
 	@ExceptionHandler(ResponseStatusException.class)
-	protected ResponseEntity<Object> handleHttpServer(ResponseStatusException ex) {
+	protected ResponseEntity<Object> handleHttpServer(ResponseStatusException ex) {		
 		String[] datos = ex.getMessage().split("\"");
 		String mensaje = ex.getMessage();
 		for (String cadena : datos) {

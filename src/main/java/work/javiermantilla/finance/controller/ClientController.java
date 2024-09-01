@@ -17,7 +17,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.dto.GenericResponseDTO;
-import work.javiermantilla.finance.dto.client.ClientFullDTO;
+import work.javiermantilla.finance.dto.client.ClientDTO;
 import work.javiermantilla.finance.service.ClientServices;
 import work.javiermantilla.finance.utils.FinanceConstants;
 
@@ -33,7 +33,7 @@ public class ClientController {
 	private GenericResponseDTO genericResponse;
 
 	@PostMapping(value = "/create", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> createClient(@Valid @RequestBody ClientFullDTO requestCreateClient) {
+	public ResponseEntity<Object> createClient(@Valid @RequestBody ClientDTO requestCreateClient) {
 		
 		log.info("Inicio de cliente a crear : {}",requestCreateClient);
 		genericResponse = new GenericResponseDTO(
@@ -48,7 +48,7 @@ public class ClientController {
 	
 	
 	@PutMapping(value = "/update", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Object> updateClient(@Valid @RequestBody ClientFullDTO requestUpdateClient) {
+	public ResponseEntity<Object> updateClient(@Valid @RequestBody ClientDTO requestUpdateClient) {
 		
 		log.info("Inicio de cliente a Actualizar : {}",requestUpdateClient);
 		genericResponse = new GenericResponseDTO(

@@ -24,7 +24,7 @@ import work.javiermantilla.finance.validators.OneOf;
 @NoArgsConstructor
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @ToString
-public class ClientFullDTO implements Serializable {	
+public class ClientDTO implements Serializable {	
 	
 	private static final long serialVersionUID = -8751017376544579435L;
 	    
@@ -41,6 +41,7 @@ public class ClientFullDTO implements Serializable {
     @NotNull
     @Size(min = 2, max = 45)
     private String apellido;
+    //RFC 5322 for Email Validation
     @Email(regexp = "^[a-zA-Z0-9_!#$%&’*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")
     private String email;
     @NotNull    

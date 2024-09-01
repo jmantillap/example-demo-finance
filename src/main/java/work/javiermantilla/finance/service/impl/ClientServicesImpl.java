@@ -10,9 +10,10 @@ import org.springframework.web.server.ResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import work.javiermantilla.finance.dto.client.ClientFullDTO;
+import work.javiermantilla.finance.dto.client.ClientDTO;
 import work.javiermantilla.finance.entity.ClientEntity;
 import work.javiermantilla.finance.repository.ClientRepository;
+import work.javiermantilla.finance.repository.ProductRepository;
 import work.javiermantilla.finance.security.ContextSession;
 import work.javiermantilla.finance.service.ClientServices;
 import work.javiermantilla.finance.utils.GenericMapper;
@@ -23,10 +24,11 @@ import work.javiermantilla.finance.utils.GenericMapper;
 public class ClientServicesImpl implements ClientServices {
 
 	private final ClientRepository clientRepository;
+	private final ProductRepository productRepository;
 	private final ContextSession session;
 
 	@Override
-	public ClientFullDTO createClient(ClientFullDTO client) {
+	public ClientDTO createClient(ClientDTO client) {
 		log.info("Cliente a guardar: {}", client);
 		client.setId(null);
 		boolean isExiste = this.clientRepository.findByTipoIdentificacionAndNumeroIdentificacion(
@@ -40,13 +42,13 @@ public class ClientServicesImpl implements ClientServices {
 		clientEntity.setFechaCreacion(LocalDateTime.now());
 		clientEntity.setFechaUltimaActualizacion(LocalDateTime.now());
 		clientEntity = this.clientRepository.save(clientEntity);
-		log.info("El usuario {}  creo el cliente : {}",session.getContextoDeSesionEnHilo().getName(), clientEntity);
-		return GenericMapper.map(clientEntity, ClientFullDTO.class);
+		log.info("El usuario {}  creo el cliente : {}",session.getContextSessionThread().getName(), clientEntity);
+		return GenericMapper.map(clientEntity, ClientDTO.class);
 	}
 
 	@Override
-	public ClientFullDTO updateClient(ClientFullDTO client) {		
-		ClientEntity clienteEntity= this.validationExist(client.getId());					
+	public ClientDTO updateClient(ClientDTO client) {		
+		ClientEntity clienteEntity= this.validationClientExist(client.getId());					
 		List<ClientEntity> listClient = this.clientRepository.findByTipoIdentificacionAndNumeroIdentificacion(
 				client.getTipoIdentificacion(), client.getNumeroIdentificacion());
 		Long reg = listClient.stream().filter(c -> !c.getId().equals(client.getId())).count();
@@ -61,28 +63,30 @@ public class ClientServicesImpl implements ClientServices {
 		clienteEntity.setNumeroIdentificacion(client.getNumeroIdentificacion());
 		clienteEntity.setEmail(client.getEmail());
 		ClientEntity clientUpdate = this.clientRepository.save(clienteEntity);
-		log.info("El usuario: {},  actualizo el cliente : {}",this.session.getContextoDeSesionEnHilo().getName() ,clientUpdate);
-		return GenericMapper.map(clientUpdate, ClientFullDTO.class);
+		log.info("El usuario: {},  actualizo el cliente : {}",this.session.getContextSessionThread().getName() ,clientUpdate);
+		return GenericMapper.map(clientUpdate, ClientDTO.class);
 	}
 
 	@Override
 	public boolean deleteClient(Integer id) {		
-		ClientEntity clientEntity= this.validationExist(id);
-		// TODO Pendiente no poder eliminar un cliente que tenga cuentas.
+		ClientEntity clientEntity= this.validationClientExist(id);
+		int reg = this.productRepository.findProductByIdClient(id).size();
+		if(reg>0) 
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No se puede eliminar el cliente porque tiene productos");
 		
-		log.info("El usuario {} elimino el cliente con id: {}",session.getContextoDeSesionEnHilo().getName(), id);		
+		log.info("El usuario {} elimino el cliente con id: {}",session.getContextSessionThread().getName(), id);		
 		this.clientRepository.delete(clientEntity);		
 		return true;
 	}
 	
 	@Override
-	public List<ClientFullDTO> getListClients() {		
+	public List<ClientDTO> getListClients() {		
 		List<ClientEntity> list= this.clientRepository.findAll();
-		log.info("El usuario {}  consulto todos los clientes",session.getContextoDeSesionEnHilo().getName());
-		return GenericMapper.mapList(list, ClientFullDTO.class);
+		log.info("El usuario {}  consulto todos los clientes",session.getContextSessionThread().getName());
+		return GenericMapper.mapList(list, ClientDTO.class);
 	}
 	
-	private ClientEntity validationExist(Integer id) {
+	private ClientEntity validationClientExist(Integer id) {
 		if (id <= 0) 
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El identificador debe ser mayor a cero");
 		

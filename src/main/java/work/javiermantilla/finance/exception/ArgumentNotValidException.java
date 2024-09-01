@@ -11,7 +11,7 @@ public class ArgumentNotValidException extends RuntimeException{
 	 */
 	private static final long serialVersionUID = -5773902223910591596L;
 	
-	private List<FieldError> listFieldErrors;
+	private final List<FieldError> listFieldErrors;
 	
 	public ArgumentNotValidException(List<FieldError> listFieldErrors, String message) {
 		super(message);
