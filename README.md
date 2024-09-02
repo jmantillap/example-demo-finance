@@ -2,7 +2,7 @@
 
 Manejo de clientes, productos y transacciones
 
-![screenshot](/image/diagrama-ER.png)
+![screenshot](/img/diagrama-ER.png)
 
 ## Proceso de montaje del proyecto 
 
