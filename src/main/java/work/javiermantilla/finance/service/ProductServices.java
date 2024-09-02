@@ -1,6 +1,9 @@
 package work.javiermantilla.finance.service;
 
 
+import java.util.List;
+
+
 import work.javiermantilla.finance.dto.product.CuentaDTO;
 import work.javiermantilla.finance.dto.product.ProductDTO;
 
@@ -10,4 +13,5 @@ public interface ProductServices {
 	ProductDTO inactivateProduct(CuentaDTO cuentaDTO);
 	ProductDTO activateProduct(CuentaDTO cuentaDTO);
 	ProductDTO calcelProduct(CuentaDTO cuentaDTO);
+	List<ProductDTO> getListProduct();
 }

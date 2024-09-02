@@ -2,6 +2,7 @@ package work.javiermantilla.finance.service.impl;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -61,7 +62,7 @@ public class ProductServicesImpl implements ProductServices {
 		this.productRepository.updateStatusProgram(ECuentaEstado.INACTIVA.getCode(), productEntity.getId());
 		productEntity.setEstado(ECuentaEstado.INACTIVA.getCode());
 		productEntity.setSaldo(null);
-		log.info("El usuario {}  inactivo el producto : {}", session.getContextSessionThread().getName(), productEntity);
+		log.info("El usuario {} inactivo el producto : {}", session.getContextSessionThread().getName(), productEntity);
 		return GenericMapper.map(productEntity, ProductDTO.class);
 	}
 
@@ -71,7 +72,7 @@ public class ProductServicesImpl implements ProductServices {
 		this.productRepository.updateStatusProgram(ECuentaEstado.ACTIVA.getCode(), productEntity.getId());
 		productEntity.setEstado(ECuentaEstado.ACTIVA.getCode());
 		productEntity.setSaldo(null);
-		log.info("El usuario {}  inactivo el producto : {}", session.getContextSessionThread().getName(), productEntity);
+		log.info("El usuario {} cancelo el producto : {}", session.getContextSessionThread().getName(), productEntity);
 		return GenericMapper.map(productEntity, ProductDTO.class);
 	}
 	
@@ -88,6 +89,13 @@ public class ProductServicesImpl implements ProductServices {
 		return GenericMapper.map(productEntity, ProductDTO.class);
 	}
 	
+	@Override
+	public List<ProductDTO> getListProduct() {
+		List<ProductEntity> list= this.productRepository.findAll();
+		log.info("El usuario {}  consulto todos los productos",session.getContextSessionThread().getName());
+		return GenericMapper.mapList(list, ProductDTO.class);
+	}
+	
 	private ProductEntity validateProduct(String numeroCuenta, ECuentaEstado estado) {
 		ProductEntity productEntity= this.productRepository.findByNumeroCuenta(numeroCuenta);
 		if(productEntity==null) 
@@ -97,6 +105,8 @@ public class ProductServicesImpl implements ProductServices {
 		
 		return productEntity;
 	}
+
+	
 
 	
 

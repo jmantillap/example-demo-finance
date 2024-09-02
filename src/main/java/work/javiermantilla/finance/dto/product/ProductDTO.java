@@ -34,17 +34,11 @@ public class ProductDTO implements Serializable {
     private String tipoProducto;
 	@Null
     @Size(min = 12, max = 12)
-    private String numeroCuenta;
-	//@DecimalMin(value = "00.00")
+    private String numeroCuenta;	
 	@Null
     private BigDecimal saldo;
 	@NotNull
-    private Boolean excentaGmf;
-	
-//	@Null
-//	@Size(min = 1, max = 1)
-//	@OneOf(allowedValues = {"A","I","C"}, message = "El valor no es válido. Solo se permite: <A>ctiva,<I>nactiva,<C>ancelada")
-//  private String estado;
+    private Boolean excentaGmf;	
 	@Null
 	private String estado;
 }
