@@ -19,12 +19,12 @@ Manejo de clientes, productos y transacciones
 * La cookie se obtiene ejecutando el servicio:  
      localhost:8080/api/security/login
 
-imagen de la cookie
+![screenshot](/img/seguridad_peticiones.png)
 
 
 ## Pruebas unitarias de cobertura
 
-imagen de las pruebas unitarias
+![screenshot](/img/cobertura.png)
 
 
 
