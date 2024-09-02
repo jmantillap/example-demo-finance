@@ -67,12 +67,11 @@ public class ExceptionGlobalResponse {
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)
 	protected ResponseEntity<Object> handleMethodArgumentNotValidException(MethodArgumentNotValidException ex) {
-		log.error(ex.getMessage(), ex);
+		//log.error(ex.getMessage(), ex);
 		List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors().stream().toList();		
 		result = new GenericResponseDTO(this.getErrorsMap(fieldErrors), false,
 				"Error validación de campos",
-				HttpStatus.BAD_REQUEST);
-		
+				HttpStatus.BAD_REQUEST);		
 		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 	}
 	

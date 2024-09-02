@@ -13,6 +13,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.dto.GenericResponseDTO;
+import work.javiermantilla.finance.dto.product.CuentaDTO;
 import work.javiermantilla.finance.dto.product.ProductDTO;
 import work.javiermantilla.finance.service.ProductServices;
 import work.javiermantilla.finance.utils.FinanceConstants;
@@ -43,4 +44,44 @@ public class ProductController {
 				
 		return new ResponseEntity<>(genericResponse, HttpStatus.CREATED);
 	}
+	
+	@PostMapping(value = "/inactivate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> inactivateProducto(@Valid @RequestBody CuentaDTO cuentaDTO) {
+		
+		log.info("Inicio de inactivar cuenta : {}",cuentaDTO.getNumeroCuenta());
+		genericResponse = new GenericResponseDTO(
+				this.productServices.inactivateProduct(cuentaDTO),
+				true, 
+				FinanceConstants.RESPONSE_UPDATE,
+				HttpStatus.OK, 
+				FinanceConstants.TITTLE_UPDATE);				
+		return new ResponseEntity<>(genericResponse, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/activate", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> activateProducto(@Valid @RequestBody CuentaDTO cuentaDTO) {		
+		log.info("Inicio de Activar cuenta : {}",cuentaDTO.getNumeroCuenta());
+		genericResponse = new GenericResponseDTO(
+				this.productServices.activateProduct(cuentaDTO),
+				true, 
+				FinanceConstants.RESPONSE_UPDATE,
+				HttpStatus.OK, 
+				FinanceConstants.TITTLE_UPDATE);				
+		return new ResponseEntity<>(genericResponse, HttpStatus.OK);
+	}
+	
+	@PostMapping(value = "/cancel", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Object> cancelProducto(@Valid @RequestBody CuentaDTO cuentaDTO) {		
+		log.info("Inicio de Cancelar cuenta : {}",cuentaDTO.getNumeroCuenta());
+		genericResponse = new GenericResponseDTO(
+				this.productServices.calcelProduct(cuentaDTO),
+				true, 
+				FinanceConstants.RESPONSE_UPDATE,
+				HttpStatus.OK, 
+				FinanceConstants.TITTLE_UPDATE);				
+		return new ResponseEntity<>(genericResponse, HttpStatus.OK);
+	}
+	
+	
+	
 }
