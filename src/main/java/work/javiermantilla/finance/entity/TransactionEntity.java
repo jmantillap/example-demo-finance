@@ -12,10 +12,12 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @Table(name = "transaccion")
+@NoArgsConstructor
 public class TransactionEntity {
 
     @Id
@@ -41,4 +43,11 @@ public class TransactionEntity {
 
     @Column(name = "monto", nullable = false)
     private BigDecimal monto;
+
+	public TransactionEntity(Integer id) {
+		super();
+		this.id = id;
+	}
+    
+    
 }   
