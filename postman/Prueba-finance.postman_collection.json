@@ -1,0 +1,552 @@
+{
+	"info": {
+		"_postman_id": "a07de466-fb63-491d-845b-28ee74bf5337",
+		"name": "Prueba-finance",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "22646572"
+	},
+	"item": [
+		{
+			"name": "login",
+			"item": [
+				{
+					"name": "simulate-login-get-cookie",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"user demo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/security/login",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"security",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Clientes",
+			"item": [
+				{
+					"name": "list-client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/client/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create-client",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": -1,\r\n  \"tipoIdentificacion\": \"CC\",\r\n  \"numeroIdentificacion\": \"37896334\",\r\n  \"nombre\": \"Eliana\",\r\n  \"apellido\": \"Bravo\",\r\n  \"email\": \"eliana@example.com\",\r\n  \"fechaNacimiento\": \"1976-07-05\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/client/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update-client",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 1,\r\n  \"tipoIdentificacion\": \"CC\",\r\n  \"numeroIdentificacion\": \"13544171\",\r\n  \"nombre\": \"Javier Orlando\",\r\n  \"apellido\": \"Mantilla Portilla\",\r\n  \"email\": \"jmantillap@gmail.com\",\r\n  \"fechaNacimiento\": \"1978-11-07\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/client/update",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"update"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete-client",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/client/delete/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"client",
+								"delete",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "cuentas",
+			"item": [
+				{
+					"name": "list-product",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": -1,\r\n  \"idCliente\": 2,\r\n  \"tipoProducto\": \"CC\",    \r\n  \"excentaGmf\": false\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/create",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "inactivate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "finance_token=eyJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiIwMDEiLCJuYW1lIjoidXNlciBkZW1vIiwiaXNzIjoiMDAxIiwic3ViIjoidXNlciBkZW1vIiwiaWF0IjoxNzI1MjYyMDk2LCJleHAiOjE3MjUzMDUyOTZ9.-htrSlRA_ppMQwBDff2U_va7eVEF9_-9sSOWCjQNm8M",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"330258148292\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/inactivate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"inactivate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "activate",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"330258148292\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/activate",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"activate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "calcel",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"330258148292\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/product/cancel",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"product",
+								"cancel"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Transaccion",
+			"item": [
+				{
+					"name": "list-transacciones",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "finance_token=eyJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiIwMDEiLCJuYW1lIjoidXNlciBkZW1vIiwiaXNzIjoiMDAxIiwic3ViIjoidXNlciBkZW1vIiwiaWF0IjoxNzI1MjQ4MDA3LCJleHAiOjE3MjUyOTEyMDd9.7IbVPpRnOHk0rlzw_B1ncllvbdtSJgUWWgZQvfiK1I0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/transaction/list",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transaction",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Consignacion",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"535152770843\",\r\n  \"monto\": 2500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/transaction/consignment-money",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transaction",
+								"consignment-money"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Retiro",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "{{cookie}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuenta\": \"330258148292\",\r\n  \"monto\": 4000\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/transaction/withdraw-money",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transaction",
+								"withdraw-money"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "transferencia",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Cookie",
+								"value": "finance_token=eyJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiIwMDEiLCJuYW1lIjoidXNlciBkZW1vIiwiaXNzIjoiMDAxIiwic3ViIjoidXNlciBkZW1vIiwiaWF0IjoxNzI1MjQ4MDA3LCJleHAiOjE3MjUyOTEyMDd9.7IbVPpRnOHk0rlzw_B1ncllvbdtSJgUWWgZQvfiK1I0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"numeroCuentaOrigen\": \"539841345215\",\r\n  \"numeroCuentaDestino\": \"330258148292\",\r\n  \"monto\": 3500\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/api/transaction/transfer",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"transaction",
+								"transfer"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "cookie",
+			"value": "finance_token=eyJhbGciOiJIUzI1NiJ9.eyJpZFVzZXIiOiIwMDEiLCJuYW1lIjoidXNlciBkZW1vIiwiaXNzIjoiMDAxIiwic3ViIjoidXNlciBkZW1vIiwiaWF0IjoxNzI1MjYyMDk2LCJleHAiOjE3MjUzMDUyOTZ9.-htrSlRA_ppMQwBDff2U_va7eVEF9_-9sSOWCjQNm8M"
+		}
+	]
+}
