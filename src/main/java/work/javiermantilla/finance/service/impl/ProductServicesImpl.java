@@ -59,7 +59,7 @@ public class ProductServicesImpl implements ProductServices {
 	@Override
 	public ProductDTO inactivateProduct(CuentaDTO cuentaDTO) {		
 		ProductEntity productEntity = this.validateProduct(cuentaDTO.getNumeroCuenta(), ECuentaEstado.INACTIVA);		
-		this.productRepository.updateStatusProduct(ECuentaEstado.INACTIVA.getCode(), productEntity.getId());
+		this.productRepository.updateStatusProduct(ECuentaEstado.INACTIVA.getCode(),LocalDateTime.now(), productEntity.getId());
 		productEntity.setEstado(ECuentaEstado.INACTIVA.getCode());
 		productEntity.setSaldo(null);
 		log.info("El usuario {} inactivo el producto : {}", session.getContextSessionThread().getName(), productEntity);
@@ -69,7 +69,7 @@ public class ProductServicesImpl implements ProductServices {
 	@Override
 	public ProductDTO activateProduct(CuentaDTO cuentaDTO) {		
 		ProductEntity productEntity = this.validateProduct(cuentaDTO.getNumeroCuenta(), ECuentaEstado.ACTIVA);
-		this.productRepository.updateStatusProduct(ECuentaEstado.ACTIVA.getCode(), productEntity.getId());
+		this.productRepository.updateStatusProduct(ECuentaEstado.ACTIVA.getCode(),LocalDateTime.now(), productEntity.getId());
 		productEntity.setEstado(ECuentaEstado.ACTIVA.getCode());
 		productEntity.setSaldo(null);
 		log.info("El usuario {} cancelo el producto : {}", session.getContextSessionThread().getName(), productEntity);
@@ -82,7 +82,7 @@ public class ProductServicesImpl implements ProductServices {
 		if(productEntity.getSaldo().doubleValue()>0d) 
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "La cuenta tiene saldo y no se puede cancelar");
 		
-		this.productRepository.updateStatusProduct(ECuentaEstado.CANCELADA.getCode(), productEntity.getId());
+		this.productRepository.updateStatusProduct(ECuentaEstado.CANCELADA.getCode(),LocalDateTime.now(), productEntity.getId());
 		productEntity.setEstado(ECuentaEstado.CANCELADA.getCode());
 		productEntity.setSaldo(null);
 		log.info("El usuario {}  inactivo el producto : {}", session.getContextSessionThread().getName(), productEntity);

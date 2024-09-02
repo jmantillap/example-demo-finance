@@ -1,5 +1,6 @@
 package work.javiermantilla.finance.repository;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,6 +22,6 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 	
 	@Modifying
 	@Transactional
-	@Query("UPDATE ProductEntity p SET p.estado = :estado  WHERE id  = :idProduct")
-	int updateStatusProduct(@Param("estado") String estado, @Param("idProduct") Integer idProduct);
+	@Query("UPDATE ProductEntity p SET p.estado = :estado, p.fechaModificacion= :fecha  WHERE id  = :idProduct")
+	int updateStatusProduct(@Param("estado") String estado, @Param("fecha") LocalDateTime fecha , @Param("idProduct") Integer idProduct);
 }
