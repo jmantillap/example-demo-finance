@@ -36,4 +36,7 @@ public class FinanceConstants {
 	
 	public static final String RESPONSE_FIND = "Consulta realizada con éxito";
 	public static final String TITTLE_FIND = "Consulta éxitosa";
+	
+	public static final String MENSAJE_ERROR_VALIDACION_CAMPOS = "Error validación de campos";
+	
 }

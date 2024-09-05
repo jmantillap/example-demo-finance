@@ -6,16 +6,19 @@ import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.validation.FieldError;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.dto.client.ClientDTO;
 import work.javiermantilla.finance.entity.ClientEntity;
+import work.javiermantilla.finance.exception.ArgumentNotValidException;
 import work.javiermantilla.finance.repository.ClientRepository;
 import work.javiermantilla.finance.repository.ProductRepository;
 import work.javiermantilla.finance.security.ContextSession;
 import work.javiermantilla.finance.service.ClientServices;
+import work.javiermantilla.finance.utils.FinanceConstants;
 import work.javiermantilla.finance.utils.GenericMapper;
 
 @Service
@@ -37,7 +40,12 @@ public class ClientServicesImpl implements ClientServices {
 			log.error("El cliente con tipo documento: {}  y numero de documento: {} ya existe ",
 					client.getTipoIdentificacion(), client.getNumeroIdentificacion());
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El cliente ya Existe");
+			/*otro ejemplo utilizando FieldError*/
+			/*List<FieldError> listFieldErrors = List.of(new FieldError("numeroIdentificacion", "numeroIdentificacion", 
+					"El cliente ya existe para el número de Identificacion nro: "+ client.getNumeroIdentificacion()));
+			throw new ArgumentNotValidException(listFieldErrors, FinanceConstants.MENSAJE_ERROR_VALIDACION_CAMPOS);*/
 		}
+		
 		ClientEntity clientEntity = GenericMapper.map(client, ClientEntity.class);
 		clientEntity.setFechaCreacion(LocalDateTime.now());
 		clientEntity.setFechaUltimaActualizacion(LocalDateTime.now());

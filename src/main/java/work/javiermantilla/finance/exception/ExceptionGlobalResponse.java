@@ -18,6 +18,7 @@ import org.springframework.web.server.ResponseStatusException;
 import jakarta.validation.ValidationException;
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.dto.GenericResponseDTO;
+import work.javiermantilla.finance.utils.FinanceConstants;
 
 @ControllerAdvice
 @Log4j2
@@ -60,7 +61,7 @@ public class ExceptionGlobalResponse {
 		if(ex.getMessage().contains("JSON parse error: Cannot deserialize value of type `java.time.LocalDate`")) {
 			mensaje="Formato de fecha erroneo. El formato debe ser 'YYYY-MM-DD'";
 		}
-		result = new GenericResponseDTO(mensaje, false,"Error validación de campos",HttpStatus.BAD_REQUEST);
+		result = new GenericResponseDTO(mensaje, false,FinanceConstants.MENSAJE_ERROR_VALIDACION_CAMPOS,HttpStatus.BAD_REQUEST);
 		
 		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 	}
@@ -70,17 +71,17 @@ public class ExceptionGlobalResponse {
 		//log.error(ex.getMessage(), ex);
 		List<FieldError> fieldErrors = ex.getBindingResult().getFieldErrors().stream().toList();		
 		result = new GenericResponseDTO(this.getErrorsMap(fieldErrors), false,
-				"Error validación de campos",
+				FinanceConstants.MENSAJE_ERROR_VALIDACION_CAMPOS,
 				HttpStatus.BAD_REQUEST);		
 		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 	}
 	
 	@ExceptionHandler(ArgumentNotValidException.class)
 	protected ResponseEntity<Object> handleArgumentNotValidException(ArgumentNotValidException ex) {
-		log.error(ex.getMessage(), ex);
+		//log.error(ex.getMessage(), ex);
 		List<FieldError> fieldErrors = ex.getListFieldErrors().stream().toList();
 		result = new GenericResponseDTO(this.getErrorsMap(fieldErrors), false,
-				"Error validación de campos",HttpStatus.BAD_REQUEST);
+				FinanceConstants.MENSAJE_ERROR_VALIDACION_CAMPOS,HttpStatus.BAD_REQUEST);
 		return new ResponseEntity<>(result, HttpStatus.BAD_REQUEST);
 	}
 	
