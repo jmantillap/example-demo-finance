@@ -2,7 +2,7 @@
 
 Manejo de clientes, productos y transacciones
 
-![screenshot](/img/diagrama-ER.png)
+![screenshot](img/diagrama-ER.png)
 
 ## Proceso de montaje del proyecto 
 
@@ -19,12 +19,12 @@ Manejo de clientes, productos y transacciones
 * La cookie se obtiene ejecutando el servicio:  
      localhost:8080/api/security/login
 
-![screenshot](/img/seguridad_peticiones.png)
+![screenshot](img/seguridad_peticiones.png)
 
 
 ## Pruebas unitarias de cobertura
 
-![screenshot](/img/cobertura.png)
+![screenshot](img/cobertura.png)
 
 
 
