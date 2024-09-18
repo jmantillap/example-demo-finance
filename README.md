@@ -1,6 +1,6 @@
 # Proyecto de prueba técnica
 
-Manejo de clientes, productos y transacciones
+Manejo de clientes, productos y transacciones, Prueba técnica
 
 ![screenshot](img/diagrama-ER.png)
 
