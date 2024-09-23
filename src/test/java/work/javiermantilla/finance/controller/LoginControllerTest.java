@@ -23,9 +23,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import jakarta.servlet.http.HttpServletResponse;
 import work.javiermantilla.finance.config.TestSecurityConfig;
-import work.javiermantilla.finance.dto.login.AutenticationDTO;
-import work.javiermantilla.finance.service.LoginServices;
-import work.javiermantilla.finance.utils.JSONUtil;
+import work.javiermantilla.finance.cross.util.JSONUtil;
+import work.javiermantilla.finance.modules.login.controller.LoginController;
+import work.javiermantilla.finance.modules.login.dto.AutenticationDTO;
+import work.javiermantilla.finance.modules.login.service.LoginServices;
 
 
 @WebMvcTest

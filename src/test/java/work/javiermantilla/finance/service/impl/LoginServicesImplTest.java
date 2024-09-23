@@ -22,8 +22,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.server.ResponseStatusException;
 
 import jakarta.servlet.http.HttpServletResponse;
-import work.javiermantilla.finance.security.JwtUtil;
-import work.javiermantilla.finance.service.LoginServices;
+import work.javiermantilla.finance.cross.security.JwtUtil;
+import work.javiermantilla.finance.modules.login.service.LoginServices;
+import work.javiermantilla.finance.modules.login.service.LoginServicesImpl;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)

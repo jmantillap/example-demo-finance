@@ -25,11 +25,12 @@ import org.springframework.web.context.WebApplicationContext;
 
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.config.TestSecurityConfig;
-import work.javiermantilla.finance.dto.transaction.TransactDTO;
-import work.javiermantilla.finance.dto.transaction.TransactFullDTO;
-import work.javiermantilla.finance.dto.transaction.TransferDTO;
-import work.javiermantilla.finance.service.TransactServices;
-import work.javiermantilla.finance.utils.JSONUtil;
+import work.javiermantilla.finance.cross.util.JSONUtil;
+import work.javiermantilla.finance.modules.transaction.controller.TransactionController;
+import work.javiermantilla.finance.modules.transaction.dto.TransactDTO;
+import work.javiermantilla.finance.modules.transaction.dto.TransactFullDTO;
+import work.javiermantilla.finance.modules.transaction.dto.TransferDTO;
+import work.javiermantilla.finance.modules.transaction.service.TransactServices;
 
 
 @Log4j2

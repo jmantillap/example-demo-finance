@@ -5,7 +5,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import work.javiermantilla.finance.security.JwtAuthenticationFilter;
+import work.javiermantilla.finance.cross.security.JwtAuthenticationFilter;
 
 import java.io.IOException;
 
@@ -19,6 +19,7 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @ContextConfiguration(classes = JwtAuthenticationFilter.class)
 public class TestSecurityConfig extends OncePerRequestFilter {
 
+	@SuppressWarnings("null")
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {

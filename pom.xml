@@ -13,20 +13,7 @@
 	<artifactId>example-demo-finance</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>example-demo-finance</name>
-	<description>Demo project for Spring Boot</description>
-	<url />
-	<licenses>
-		<license />
-	</licenses>
-	<developers>
-		<developer />
-	</developers>
-	<scm>
-		<connection />
-		<developerConnection />
-		<tag />
-		<url />
-	</scm>
+	<description>Demo project for Spring Boot</description>	
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -184,6 +171,7 @@
 					<excludes>
 						<exclude>
 							work/javiermantilla/finance/ExampleDemoFinanceApplication.class</exclude>
+						<exclude>**/cross/**</exclude>	
 						<exclude>**/entity/*</exclude>
 						<exclude>**/dto/**</exclude>
 						<exclude>**/exception/*</exclude>

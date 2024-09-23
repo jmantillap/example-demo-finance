@@ -23,15 +23,15 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.server.ResponseStatusException;
 
 import lombok.extern.log4j.Log4j2;
-import work.javiermantilla.finance.dto.client.ClientDTO;
-import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
-import work.javiermantilla.finance.entity.ClientEntity;
-import work.javiermantilla.finance.entity.ProductEntity;
-import work.javiermantilla.finance.repository.ClientRepository;
-import work.javiermantilla.finance.repository.ProductRepository;
-import work.javiermantilla.finance.security.ContextSession;
-
-import work.javiermantilla.finance.service.ClientServices;
+import work.javiermantilla.finance.cross.security.ContextSession;
+import work.javiermantilla.finance.modules.client.dto.ClientDTO;
+import work.javiermantilla.finance.modules.client.entity.ClientEntity;
+import work.javiermantilla.finance.modules.client.repository.ClientRepository;
+import work.javiermantilla.finance.modules.client.service.ClientServices;
+import work.javiermantilla.finance.modules.client.service.ClientServicesImpl;
+import work.javiermantilla.finance.modules.login.dto.UserContextSessionDTO;
+import work.javiermantilla.finance.modules.product.entity.ProductEntity;
+import work.javiermantilla.finance.modules.product.repository.ProductRepository;
 
 
 @SpringBootTest

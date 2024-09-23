@@ -23,10 +23,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import lombok.extern.log4j.Log4j2;
 import work.javiermantilla.finance.config.TestSecurityConfig;
-import work.javiermantilla.finance.dto.client.ClientDTO;
-
-import work.javiermantilla.finance.service.ClientServices;
-import work.javiermantilla.finance.utils.JSONUtil;
+import work.javiermantilla.finance.cross.util.JSONUtil;
+import work.javiermantilla.finance.modules.client.controller.ClientController;
+import work.javiermantilla.finance.modules.client.dto.ClientDTO;
+import work.javiermantilla.finance.modules.client.service.ClientServices;
 
 
 @Log4j2

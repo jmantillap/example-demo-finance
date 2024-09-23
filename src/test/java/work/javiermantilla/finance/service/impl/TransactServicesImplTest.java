@@ -18,17 +18,16 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.server.ResponseStatusException;
 
-import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
-import work.javiermantilla.finance.dto.transaction.TransactDTO;
-import work.javiermantilla.finance.dto.transaction.TransferDTO;
-import work.javiermantilla.finance.entity.ProductEntity;
-import work.javiermantilla.finance.entity.TransactionEntity;
-
-import work.javiermantilla.finance.repository.ProductRepository;
-import work.javiermantilla.finance.repository.TransactionRepository;
-import work.javiermantilla.finance.security.ContextSession;
-
-import work.javiermantilla.finance.service.TransactServices;
+import work.javiermantilla.finance.cross.security.ContextSession;
+import work.javiermantilla.finance.modules.login.dto.UserContextSessionDTO;
+import work.javiermantilla.finance.modules.product.entity.ProductEntity;
+import work.javiermantilla.finance.modules.product.repository.ProductRepository;
+import work.javiermantilla.finance.modules.transaction.dto.TransactDTO;
+import work.javiermantilla.finance.modules.transaction.dto.TransferDTO;
+import work.javiermantilla.finance.modules.transaction.entity.TransactionEntity;
+import work.javiermantilla.finance.modules.transaction.repository.TransactionRepository;
+import work.javiermantilla.finance.modules.transaction.service.TransactServices;
+import work.javiermantilla.finance.modules.transaction.service.TransactServicesImpl;
 
 
 @SpringBootTest

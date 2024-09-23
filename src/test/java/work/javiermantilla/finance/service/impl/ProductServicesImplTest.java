@@ -21,19 +21,17 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.server.ResponseStatusException;
 
-
-
-import work.javiermantilla.finance.dto.login.UserContextSessionDTO;
-import work.javiermantilla.finance.dto.product.CuentaDTO;
-import work.javiermantilla.finance.dto.product.ProductDTO;
-import work.javiermantilla.finance.entity.ClientEntity;
-import work.javiermantilla.finance.entity.ProductEntity;
-import work.javiermantilla.finance.repository.ClientRepository;
-import work.javiermantilla.finance.repository.ProductRepository;
-import work.javiermantilla.finance.security.ContextSession;
-
-import work.javiermantilla.finance.service.ProductServices;
-import work.javiermantilla.finance.utils.GeneratorNumberAccount;
+import work.javiermantilla.finance.cross.security.ContextSession;
+import work.javiermantilla.finance.cross.util.GeneratorNumberAccount;
+import work.javiermantilla.finance.modules.client.entity.ClientEntity;
+import work.javiermantilla.finance.modules.client.repository.ClientRepository;
+import work.javiermantilla.finance.modules.login.dto.UserContextSessionDTO;
+import work.javiermantilla.finance.modules.product.dto.CuentaDTO;
+import work.javiermantilla.finance.modules.product.dto.ProductDTO;
+import work.javiermantilla.finance.modules.product.entity.ProductEntity;
+import work.javiermantilla.finance.modules.product.repository.ProductRepository;
+import work.javiermantilla.finance.modules.product.service.ProductServices;
+import work.javiermantilla.finance.modules.product.service.ProductServicesImpl;
 
 @SpringBootTest
 @TestInstance(Lifecycle.PER_CLASS)
